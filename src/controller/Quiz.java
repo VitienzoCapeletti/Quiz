@@ -1,11 +1,16 @@
-package program;
+package controller;
 
-import program.objetos.QuestaoDTO;
+import model.QuestaoDTO;
+import model.entity.Questao;
 
 public interface Quiz {
 
     QuestaoDTO proximaQuestao();
+
     Boolean validarResposta(String codigo);
+
     Integer resultadoFinal();
+
+    void adicionarQuestao(Questao questao);
 
 }

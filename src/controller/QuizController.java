@@ -1,20 +1,20 @@
-package program;
+package controller;
 
-import data.FileManager;
-import program.objetos.Questao;
-import program.objetos.QuestaoDTO;
+import model.FileManager;
+import model.entity.Questao;
+import model.QuestaoDTO;
 
 import java.util.List;
 
-public class Program implements Quiz {
+public class QuizController implements Quiz {
 
     private int pontosTotais;
     private int pontosRodada;
     private int proximaQuestao;
-    private List<Questao> questoes;
-    private FileManager fileManager;
+    private final List<Questao> questoes;
+    private final FileManager fileManager;
 
-    public Program() {
+    public QuizController() {
         this.fileManager = new FileManager();
         this.questoes = fileManager.buscarQuestoes();
     }
@@ -25,9 +25,8 @@ public class Program implements Quiz {
             Questao questao = questoes.get(proximaQuestao);
             proximaQuestao++;
             pontosRodada = 5;
-            QuestaoDTO dto = new QuestaoDTO(questao);
 
-            return dto;
+            return new QuestaoDTO(questao);
         }
         return null;
     }
@@ -52,4 +51,11 @@ public class Program implements Quiz {
     public Integer resultadoFinal() {
         return pontosTotais;
     }
+
+
+    public void adicionarQuestao(Questao questao){
+        fileManager.adicionarQuestao(questao);
+        questoes.add(questao);
+    }
+
 }

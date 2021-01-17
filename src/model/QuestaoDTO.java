@@ -1,7 +1,13 @@
-package program.objetos;
+package model;
 
+
+import model.entity.Alternativa;
+import model.entity.Questao;
+
+import java.util.Arrays;
 import java.util.List;
 
+//DATA TRANSFER OBJECT
 public class QuestaoDTO {
 
     private String enunciado;
@@ -9,7 +15,7 @@ public class QuestaoDTO {
 
     public QuestaoDTO(Questao questao) {
         this.enunciado = questao.getEnunciado();
-        this.alternativas = questao.getAlternativas();
+        this.alternativas = Arrays.asList(questao.getAlternativas()) ;
     }
 
     public String getEnunciado() {
